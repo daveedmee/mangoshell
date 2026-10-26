@@ -6,6 +6,8 @@ notification daemon, window overview, clipboard browser, and wallpaper/theme
 gallery are one QML process; Mango owns the compositor, wallpaper state, and
 global keybinds.
 
+![Screenshot of mangoshell, featuring three top bars and a gruvbox-inspired dark theme](/screenshot.png?raw=true)
+
 ## Features
 
 - Three-island top bar on every monitor: session, tags, layout, launcher,
