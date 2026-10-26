@@ -16,8 +16,7 @@ global keybinds.
   actions.
 - Notification daemon with popup queue, Do Not Disturb, history, actions, and
   click-to-open source applications.
-- Full-screen window overview with live previews, tag filters, search, normal
-  close (same as `SUPER+W`), and a secondary force-close confirmation.
+- Full-screen window overview with live previews, tag filters, search, and a secondary force-close confirmation.
 - Wallpaper gallery with folder search, placement (crop/fit/stretch/tile/
   center), Matugen palettes, source-colour picking, and light/dark/auto mode.
 - Pywal + Matugen pipeline that recolours Quickshell, rofi, KDE/Qt, Konsole,
@@ -44,12 +43,12 @@ global keybinds.
 
 | Component | Needed for |
 | --- | --- |
-| `rofi` (Wayland-capable build) | Launcher and run dialog. |
+| `rofi` | Launcher and run dialog. |
 | `wal` (pywal) | Base wallpaper palette and Mango border colours. |
 | `matugen` | Material You palettes for the shell and applications. |
 | `swaybg` | Wallpaper rendering and placement. |
 | `jq` | JSON state and IPC parsing in scripts. |
-| ImageMagick 6 or 7 (`magick`/`convert`/`identify`) | Wallpaper metadata, previews, colour sampling, luminance. |
+| ImageMagick (`magick`/`convert`/`identify`) | Wallpaper metadata, previews, colour sampling, luminance. |
 | `cliphist` + `wl-clipboard` (`wl-copy`, `wl-paste`) | Clipboard history. |
 | `grim` + `slurp` | Screenshots and overview previews. |
 | `playerctl` | Media keys (play/pause, next, previous). |
@@ -62,13 +61,11 @@ global keybinds.
 ### Optional
 
 - `ddcutil` for external-monitor brightness.
-- `kdeconnect-cli` + `busctl` for phone battery readings.
+- `kdeconnect-cli` + `busctl` for connected device battery readings.
 - `swaylock` for locking; without it the lock action reports an error.
 - `iw` for the Wi-Fi band label in system stats.
 - `nvidia-smi` for NVIDIA GPU utilisation.
-- `spectacle` for screenshots when running under Plasma/KWin.
-- `xdg-user-dir` for the Pictures directory; otherwise `~/Bilder` and
-  `~/Pictures` are tried.
+- `xdg-user-dir` for the Pictures directory; otherwise `~/Pictures` is tried.
 - A polkit agent such as `polkit-kde-authentication-agent-1`.
 - `breeze` icons/cursors (`breeze` for Quickshell, `breeze-dark` for rofi).
 
@@ -90,8 +87,8 @@ Back up an existing configuration first. The commands below merge the four
 configuration trees into `~/.config` and preserve executable bits.
 
 ```bash
-git clone <repository-url> ~/Projekte/Mangoshell
-cd ~/Projekte/Mangoshell
+git clone <repository-url> ./mangoshell
+cd mangoshell
 
 mkdir -p ~/.config
 rsync -a quickshell/ ~/.config/quickshell/
@@ -110,7 +107,7 @@ Mango reads `~/.config/mango/config.toml` by default. Start it directly:
 mango
 ```
 
-or select MangoWM in your display manager. Its `exec_once` block restores the
+or select Mango in your display manager. Its `exec_once` block restores the
 recorded wallpaper (starting `swaybg`), refreshes the theme, starts the polkit
 agent, launches Quickshell (`qs`), and starts the cliphist watchers.
 
