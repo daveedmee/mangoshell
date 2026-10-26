@@ -1,0 +1,17 @@
+@theme "theme.rasi"
+
+configuration {
+    modes: "drun,run,window";
+    show-icons: true;
+    icon-theme: "breeze-dark";
+    terminal: "rofi-sensible-terminal";
+    drun-display-format: "{name}";
+    display-drun: "Search";
+    display-run: "Run";
+    display-window: "Windows";
+    matching: "fuzzy";
+    case-sensitive: false;
+    sort: true;
+    disable-history: false;
+    hover-select: true;
+}

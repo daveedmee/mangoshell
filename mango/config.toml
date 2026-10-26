@@ -1,0 +1,414 @@
+[global]
+
+# ── Autostart (once per session) ─────────────────────────────────────────
+# restore-wallpaper.sh restores the wallpaper Mango recorded; theme-refresh
+# then derives all surface colours from that same wal palette.
+exec_once = [
+    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE",
+    'bash "${XDG_CONFIG_HOME:-$HOME/.config}/mango/scripts/restore-wallpaper.sh"',
+    'bash "${XDG_CONFIG_HOME:-$HOME/.config}/mango/scripts/theme-refresh.sh"',
+    "sh -c 'p=$(command -v polkit-kde-authentication-agent-1 || true); [ -n \"$p\" ] || p=/usr/lib/polkit-kde-authentication-agent-1; [ -x \"$p\" ] && exec \"$p\"'",
+    "qs",
+    "wl-paste --type text --watch cliphist store",
+    "wl-paste --type image --watch cliphist store"
+    # Add personal applications here, for example: "steam -silent"
+]
+
+# More options: https://github.com/mangowm/mango/wiki/
+
+# ── Window effects ───────────────────────────────────────────────────────
+# Frosted glass, not stained glass: a small radius with more passes gives the
+# same blur strength as a large radius with few passes, but without the
+# blocky/banded artifacts. Keep color adjustments neutral so the backdrop
+# keeps its real colors.
+blur = 1
+blur_layer = 1
+blur_optimized = 1
+blur_params_num_passes = 4
+blur_params_radius = 3
+blur_params_noise = 0.02
+blur_params_brightness = 1.0
+blur_params_contrast = 1.0
+blur_params_saturation = 1.0
+shadows = 0
+layer_shadows = 0
+shadow_only_floating = 1
+shadows_size = 10
+shadows_blur = 15
+shadows_position_x = 0
+shadows_position_y = 0
+shadows_color = 0x000000ff
+border_radius = 6
+no_radius_when_single = 0
+focused_opacity = 0.80
+unfocused_opacity = 0.66
+dim_enable = 0
+dim_focused_color = 0x00000000
+dim_unfocused_color = 0x00000055
+
+# ── Animations (snappy) ─────────────────────────────────────────────────
+animations = 1
+layer_animations = 1
+animation_type_open = "slide"
+animation_type_close = "slide"
+animation_fade_in = 1
+animation_fade_out = 1
+tag_animation_direction = 1
+zoom_initial_ratio = 0.4
+zoom_end_ratio = 0.8
+fade_in_begin_opacity = 0.5
+fade_out_begin_opacity = 0.8
+animation_duration_move = 250
+animation_duration_open = 250
+animation_duration_tag = 250
+animation_duration_close = 250
+animation_duration_focus = 0
+animation_curve_open = [0.46, 1.0, 0.29, 1]
+animation_curve_move = [0.46, 1.0, 0.29, 1]
+animation_curve_tag = [0.46, 1.0, 0.29, 1]
+animation_curve_close = [0.08, 0.92, 0, 1]
+animation_curve_focus = [0.46, 1.0, 0.29, 1]
+animation_curve_opacity_fade_out = [0.5, 0.5, 0.5, 0.5]
+animation_curve_opacity_fade_in = [0.46, 1.0, 0.29, 1]
+
+# ── Scroller layout (default, niri-like columns) ────────────────────────
+scroller_structs = 20
+scroller_default_proportion = 0.5
+scroller_focus_center = 0
+scroller_prefer_center = 0
+edge_scroller_pointer_focus = 1
+edge_scroller_focus_allow_speed = 0.0
+# A lone scroller window fills the output (smart_gaps removes its gaps).
+scroller_ignore_proportion_single = 0
+scroller_default_proportion_single = 1.0
+scroller_proportion_preset = [0.5, 0.8, 1.0]
+
+# ── Master-stack / dwindle / misc layouts ───────────────────────────────
+new_is_master = 1
+default_master_factor = 0.55
+default_master_count = 1
+tag_num = 9
+smart_gaps = 0
+
+dwindle_smart_split = 0
+dwindle_drop_simple_split = 1
+dwindle_manual_split = 0
+dwindle_horizontal_split = 1
+dwindle_vertical_split = 1
+dwindle_preserve_split = 0
+
+monocle_tab_mode = 1
+monocle_no_border = 0
+monocle_no_gap = 0
+deck_tab_mode = 1
+
+# ── Overview ────────────────────────────────────────────────────────────
+hotarea_size = 10
+enable_hotarea = 0
+hotarea_disable_on_fullscreen = 1
+overview_gap_inner = 5
+overview_gap_outer = 30
+overcircle_center_ratio = 0.5
+title_message_bar_height = 52
+title_message_bar_gap = 20
+
+# ── Behaviour (hover focus, no cursor warping) ─────────────────────────
+no_border_when_single = 0
+axis_bind_apply_timeout = 100
+focus_on_activate = 1
+idle_inhibit_ignore_visible = 0
+idle_inhibit_when_fullscreen = 0
+sloppy_focus = 1
+warp_cursor = 0
+focus_cross_monitor = 0
+focus_direction_only_zone_overlap = 1
+focus_cross_tag = 0
+enable_floating_snap = 0
+snap_distance = 30
+float_full_to_top = 0
+# Use the Xcursor directory name, not the theme's display name.
+cursor_theme = "breeze_cursors"
+cursor_size = 24
+drag_tile_to_tile = 1
+drag_tile_small = 1
+
+# ── Keyboard ───────────────────────────────────────────────────────────
+repeat_rate = 25
+repeat_delay = 600
+numlock_on = 1
+xkb_rules_layout = "de"
+xkb_rules_variant = "nodeadkeys"
+
+# ── Pointers ────────────────────────────────────────────────────────────
+disable_trackpad = 0
+tap_to_click = 1
+tap_and_drag = 1
+drag_lock = 1
+trackpad_natural_scrolling = 0
+trackpad_disable_while_typing = 1
+trackpad_left_handed = 0
+trackpad_middle_button_emulation = 0
+swipe_min_threshold = 1
+mouse_natural_scrolling = 0
+
+# ── Appearance ──────────────────────────────────────────────────────────
+gap_inner_horizontal = 10
+gap_inner_vertical = 10
+gap_outer_horizontal = 20
+gap_outer_vertical = 20
+scratchpad_width_ratio = 0.8
+scratchpad_height_ratio = 0.9
+border_px = 1
+border_radius = 6
+
+# Fallback palette (pywal overrides these; see source_optional below)
+root_color = 0x070b13ff
+border_color = 0xa6b2c366
+drop_color = 0x96b0cd66
+split_color = 0xada9caff
+focus_color = 0xb8b5deff
+maximized_screen_color = 0x96b0cdff
+urgent_color = 0xada9caff
+scratchpad_color = 0xbcb8d9ff
+global_color = 0xa5bfdcff
+overlay_color = 0x9abadeff
+
+# Dynamic pywal palette, generated by `wal` (optional: ignored if missing)
+source_optional = ["~/.cache/wal/mango.toml"]
+
+[env]
+"XDG_CURRENT_DESKTOP" = "mango"
+"XDG_SESSION_TYPE" = "wayland"
+"XDG_SESSION_DESKTOP" = "mango"
+"QT_QPA_PLATFORM" = "wayland;xcb"
+"QT_QPA_PLATFORMTHEME" = "kde"
+"MOZ_ENABLE_WAYLAND" = "1"
+
+
+[bind.default]
+
+# ── Apps ────────────────────────────────────────────────────────────────
+"SUPER+Return" = "spawn,konsole"
+"SUPER+space" = "spawn,rofi -show drun"
+"SUPER+ALT+space" = "spawn,rofi -show run"
+"SUPER+d" = "spawn,dolphin"
+"SUPER+n" = "spawn,qs ipc call notifications toggle"
+"SUPER+SHIFT+n" = "spawn,qs ipc call notifications dnd"
+
+# ── Compositor ──────────────────────────────────────────────────────────
+"SUPER+r" = "reload_config"
+"SUPER+SHIFT+q" = "quit"
+"SUPER+w" = "killclient,"
+"SUPER+f" = "togglefullscreen,"
+"SUPER+SHIFT+f" = "togglefakefullscreen,"
+"SUPER+m" = "switch_layout"
+"SUPER+s" = "togglefloating,"
+"SUPER+g" = "toggleglobal,"
+"SUPER+i" = "minimized,"
+"SUPER+SHIFT+I" = "restore_minimized"
+"SUPER+o" = "toggleoverlay,"
+"ALT+z" = "toggle_scratchpad"
+
+# ── Focus ──────────────────────────────────────────────────────────────
+"SUPER+Left" = "focusdir,left"
+"SUPER+Down" = "focusdir,down"
+"SUPER+Up" = "focusdir,up"
+"SUPER+Right" = "focusdir,right"
+"SUPER+Tab" = "togglejump,"
+
+# ── Swap window with neighbour (BSPWM) ─────────────────────────────────
+"SUPER+SHIFT+Left" = "move_client,left"
+"SUPER+SHIFT+Down" = "move_client,down"
+"SUPER+SHIFT+Up" = "move_client,up"
+"SUPER+SHIFT+Right" = "move_client,right"
+
+# ── Tags (BSPWM desktops) ──────────────────────────────────────────────
+"SUPER+1" = "view,1,0"
+"SUPER+2" = "view,2,0"
+"SUPER+3" = "view,3,0"
+"SUPER+4" = "view,4,0"
+"SUPER+5" = "view,5,0"
+"SUPER+6" = "view,6,0"
+"SUPER+7" = "view,7,0"
+"SUPER+8" = "view,8,0"
+"SUPER+9" = "view,9,0"
+"SUPER+comma" = "viewtoleft,0"
+"SUPER+period" = "viewtoright,0"
+
+# Send focused window to a tag without following it (BSPWM)
+"SUPER+SHIFT+1" = "tagsilent,1"
+"SUPER+SHIFT+2" = "tagsilent,2"
+"SUPER+SHIFT+3" = "tagsilent,3"
+"SUPER+SHIFT+4" = "tagsilent,4"
+"SUPER+SHIFT+5" = "tagsilent,5"
+"SUPER+SHIFT+6" = "tagsilent,6"
+"SUPER+SHIFT+7" = "tagsilent,7"
+"SUPER+SHIFT+8" = "tagsilent,8"
+"SUPER+SHIFT+9" = "tagsilent,9"
+
+# ── Scroller navigation (Left Alt + arrows) ────────────────────────────
+# Left/right move between scroller columns. Up/down resize the focused
+# column in 5% steps (clamped to 20–100%).
+"ALT+Left" = "focusdir,left"
+"ALT+Right" = "focusdir,right"
+"ALT+Up" = 'spawn_shell,bash "${XDG_CONFIG_HOME:-$HOME/.config}/mango/scripts/scroller-resize.sh" up'
+"ALT+Down" = 'spawn_shell,bash "${XDG_CONFIG_HOME:-$HOME/.config}/mango/scripts/scroller-resize.sh" down'
+
+# ── Scroller layout controls ───────────────────────────────────────────
+"ALT+e" = "set_proportion,1.0"
+"ALT+x" = "switch_proportion_preset,"
+"alt+super+ctrl+Left" = "scroller_stack,left"
+"alt+super+ctrl+Right" = "scroller_stack,right"
+"alt+super+ctrl+Up" = "scroller_stack,up"
+"alt+super+ctrl+Down" = "scroller_stack,down"
+
+# ── Monitors ────────────────────────────────────────────────────────────
+"ALT+SHIFT+Left" = "focusmon,left"
+"ALT+SHIFT+Right" = "focusmon,right"
+"SUPER+ALT+Left" = "tagmon,left"
+"SUPER+ALT+Right" = "tagmon,right"
+
+# ── Floating windows ───────────────────────────────────────────────────
+"CTRL+SHIFT+Up" = "movewin,+0,-50"
+"CTRL+SHIFT+Down" = "movewin,+0,+50"
+"CTRL+SHIFT+Left" = "movewin,-50,+0"
+"CTRL+SHIFT+Right" = "movewin,+50,+0"
+"CTRL+ALT+Up" = "resizewin,+0,-50"
+"CTRL+ALT+Down" = "resizewin,+0,+50"
+"CTRL+ALT+Left" = "resizewin,-50,+0"
+"CTRL+ALT+Right" = "resizewin,+50,+0"
+
+# ── Gaps ────────────────────────────────────────────────────────────────
+"ALT+SHIFT+X" = "incgaps,1"
+"ALT+SHIFT+Z" = "incgaps,-1"
+"ALT+SHIFT+R" = "togglegaps"
+
+# ── Media keys ──────────────────────────────────────────────────────────
+"XF86AudioRaiseVolume" = 'spawn_shell,bash "${XDG_CONFIG_HOME:-$HOME/.config}/mango/scripts/volume.sh" up'
+"XF86AudioLowerVolume" = 'spawn_shell,bash "${XDG_CONFIG_HOME:-$HOME/.config}/mango/scripts/volume.sh" down'
+"XF86AudioMute" = "spawn,pactl set-sink-mute @DEFAULT_SINK@ toggle"
+"XF86AudioMicMute" = "spawn,pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+"XF86AudioPlay" = "spawn,playerctl play-pause"
+"XF86AudioNext" = "spawn,playerctl next"
+"XF86AudioPrev" = "spawn,playerctl previous"
+
+# ── Screenshots: Print = full, Super+Shift+S = region, Super+Print = window ─
+"SUPER+SHIFT+S" = 'spawn_shell,bash "${XDG_CONFIG_HOME:-$HOME/.config}/mango/scripts/screenshot.sh" region'
+"Print" = 'spawn_shell,bash "${XDG_CONFIG_HOME:-$HOME/.config}/mango/scripts/screenshot.sh" fullscreen'
+"SUPER+Print" = 'spawn_shell,bash "${XDG_CONFIG_HOME:-$HOME/.config}/mango/scripts/screenshot.sh" window'
+
+# ── Quickshell overlays ─────────────────────────────────────────────────
+"SUPER+SHIFT+Tab" = "spawn,qs ipc call overview capture"
+"SUPER+SHIFT+c" = "spawn,qs ipc call mangoflow controls"
+"SUPER+v" = "spawn,qs ipc call mangoflow clipboard"
+"SUPER+SHIFT+w" = "spawn,qs ipc call mangoflow gallery"
+
+[mousebind.default]
+
+# Mouse Button Bindings
+"SUPER+btn_left" = "moveresize,curmove"
+"SUPER+btn_middle" = "togglemaximizescreen,0"
+"SUPER+btn_right" = "moveresize,curresize"
+
+[axisbind.default]
+
+# Axis Bindings
+"SUPER+UP" = "viewtoleft_have_client"
+"SUPER+DOWN" = "viewtoright_have_client"
+
+[gesturebind.default]
+
+# Gesture Bindings
+"none+left+3" = "focusdir,left"
+"none+right+3" = "focusdir,right"
+"none+up+3" = "focusdir,up"
+"none+down+3" = "focusdir,down"
+"none+right+4" = "viewprev_have_client"
+"none+left+4" = "viewnext_have_client"
+"none+up+4" = "enteroverview"
+"none+down+4" = "leaveoverview"
+
+# ── Tags use the gapped grid layout by default ─────────────────────────
+# layout support: tile, scroller, grid, deck, monocle, center_tile,
+#                 vertical_tile, vertical_scroller
+
+[[rule.tag_rule]]
+id = 1
+layout_name = "scroller"
+
+[[rule.tag_rule]]
+id = 2
+layout_name = "scroller"
+
+[[rule.tag_rule]]
+id = 3
+layout_name = "scroller"
+
+[[rule.tag_rule]]
+id = 4
+layout_name = "scroller"
+
+[[rule.tag_rule]]
+id = 5
+layout_name = "scroller"
+
+[[rule.tag_rule]]
+id = 6
+layout_name = "scroller"
+
+[[rule.tag_rule]]
+id = 7
+layout_name = "scroller"
+
+[[rule.tag_rule]]
+id = 8
+layout_name = "scroller"
+
+[[rule.tag_rule]]
+id = 9
+layout_name = "scroller"
+
+# ── Window rules: apps that stay fully opaque ──────────────────────────
+# The app list lives in [var], so this template is the only
+# rule needed. It applies full opacity and skips blur for every listed app.
+
+[var]
+# Apps that should stay fully opaque and unblurred.
+# Add an app by appending "|<app_id>" to this list.
+# Matching is case-insensitive PCRE substring, so "firefox" also matches
+# org.mozilla.firefox and "steam" also matches Steam/steam_app_*.
+opaque_apps = "firefox|steam|gwenview"
+floating_apps = "gpick|REPENTOGON|steam|nm-connection-editor|megasync|portal.desktop.kde"
+
+[[rule.window_rule]]
+app_id = "(?i)($opaque_apps)"
+focused_opacity = 1.0
+unfocused_opacity = 1.0
+no_blur = 1
+
+[[rule.window_rule]]
+app_id = "(?i)($floating_apps)"
+is_floating = 1
+no_border = 1
+
+# Firefox Picture-in-Picture is a separate window with the Firefox app ID and
+# a localized PiP title. Match both so normal Firefox windows keep tiling.
+[[rule.window_rule]]
+app_id = "(?i)^(firefox|org\\.mozilla\\.firefox)$"
+title = "(?i)(picture-in-picture|bild-im-bild|bild-in-bild)"
+is_floating = 1
+
+# ── Layer rules ────────────────────────────────────────────────────────
+[[rule.layer_rule]]
+animation_type_open = "zoom"
+layer_name = "rofi"
+
+[[rule.layer_rule]]
+animation_type_close = "zoom"
+layer_name = "rofi"
+
+# slurp's selection surface must stay crisp while choosing a screenshot.
+# Layer blur would otherwise wash out the dimmed screen underneath.
+[[rule.layer_rule]]
+layer_name = "selection"
+no_blur = 1

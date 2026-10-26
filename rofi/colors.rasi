@@ -1,0 +1,10 @@
+/* Neutral fallback palette. theme-refresh.sh replaces this file after the
+ * first wallpaper is applied. */
+* {
+    col-bg: rgba(24, 26, 27, 0.97);
+    col-fg: #e6e1e5;
+    col-dim: rgba(202, 196, 208, 0.82);
+    col-border: rgba(147, 144, 153, 0.58);
+    col-input: rgba(230, 225, 229, 0.05);
+    col-selected: rgba(208, 188, 255, 0.14);
+}
